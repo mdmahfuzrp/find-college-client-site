@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+    --primary-color: #8861b3;
+    --opacity-color: #8961b33e;
+    --hover-color: #8961b3c3;
+}
+.custom-btn{
+    font-size: 17px;
+    background-color: #8861b3;
+    width: fit-content;
+    margin-left: auto;
+    padding: 7px 8px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    color: white;
+    transition: .1s ease-in-out;
+}
+.custom-btn:hover{
+    background-color: #6e4797;
+}
