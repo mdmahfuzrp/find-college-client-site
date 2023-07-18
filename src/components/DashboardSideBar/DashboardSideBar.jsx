@@ -10,12 +10,14 @@ const DashboardSideBar = () => {
     }
 
     const houseOwner = <>
+        <Link to='/' className='w-full text-[#ffffffdd] hover:bg-[#ffffff3f] py-[7px] px-3 rounded-md hover:shadow-md cursor-pointer'>Home</Link>
         <Link className='w-full text-[#ffffffdd] hover:bg-[#ffffff3f] py-[7px] px-3 rounded-md hover:shadow-md cursor-pointer'>All Listed House</Link>
         <Link className='w-full text-[#ffffffdd] hover:bg-[#ffffff3f] py-[7px] px-3 rounded-md hover:shadow-md cursor-pointer'>All Booked Houses</Link>
-        <Link className='w-full text-[#ffffffdd] hover:bg-[#ffffff3f] py-[7px] px-3 rounded-md hover:shadow-md cursor-pointer'>Add New Houses</Link>
+        <Link to='/dashboard/addNewHouse' className='w-full text-[#ffffffdd] hover:bg-[#ffffff3f] py-[7px] px-3 rounded-md hover:shadow-md cursor-pointer'>Add New Houses</Link>
     </>
 
     const houseRenter = <>
+        <Link to='/' className='w-full text-[#ffffffdd] hover:bg-[#ffffff3f] py-[7px] px-3 rounded-md hover:shadow-md cursor-pointer'>Home</Link>
         <Link className='w-full text-[#ffffffdd] hover:bg-[#ffffff3f] py-[7px] px-3 rounded-md hover:shadow-md cursor-pointer'>My Booked Houses</Link>
         <Link className='w-full text-[#ffffffdd] hover:bg-[#ffffff3f] py-[7px] px-3 rounded-md hover:shadow-md cursor-pointer'>Manage Bookings</Link>
     </>
