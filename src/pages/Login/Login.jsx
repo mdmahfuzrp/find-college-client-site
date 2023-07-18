@@ -1,12 +1,16 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import logo from '../../assets/logo.png'
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useContext } from 'react';
-import { AuthContext } from '../../Providers/AuthProviders/AuthProviders';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
 const Login = () => {
-    const {setUser} = useContext(AuthContext);
+    const { setIsLoggedIn } = useContext(AuthContext)
     const { register, handleSubmit, formState: { errors }, } = useForm();
+
+    const location = useLocation();
+    const navigate = useNavigate();
+    const from = location.state?.from?.pathname || '/';
 
     const handleLogin = async (data, e) => {
         e.preventDefault();
@@ -18,9 +22,20 @@ const Login = () => {
             });
 
             // Handle successful login (e.g., save user data, redirect, etc.)
-            console.log(response.data);
             const userData = response.data.user;
-            setUser(userData);
+            if (userData) {
+                axios.post('http://localhost:5000/jwt', { email: userData.email })
+                    .then(response => {
+                        localStorage.setItem('access-token', response.data.token);
+                        localStorage.setItem('user-data', JSON.stringify(userData));
+                        setIsLoggedIn(true);
+                        navigate(from, { replace: true });
+                    })
+            }
+            else {
+                localStorage.removeItem('access-token', 'user-data');
+
+            }
         } catch (error) {
             // Handle login error (e.g., display an error message)
             console.error('Error during login:', error.response.data.message);
@@ -32,7 +47,7 @@ const Login = () => {
         <div>
             <div className="min-h-screen w-full flex flex-col items-center justify-center">
                 <div className="bg-white p-10 py-14 rounded-xl">
-                    <img className="w-[165px] mx-auto" src={logo} alt="" />
+                    <Link to='/'> <img className="w-[165px] mx-auto" src={logo} alt="" /></Link>
                     <h1 className="mt-5 text-2xl font-semibold text-slate-700">Login and get house updates!</h1>
                     <p className="text-slate-500">House hunter with 14 million+ people connected.</p>
 
