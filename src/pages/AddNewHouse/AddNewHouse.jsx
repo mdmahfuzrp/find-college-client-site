@@ -18,11 +18,15 @@ const AddNewHouse = () => {
         const picture = form.picture.value;
         const price = form.price.value;
         const availability = form.availability.value;
-        const phone = form.phone.value;
         const houseOwner = form.houseOwner.value;
         const ownerEmail = form.ownerEmail.value;
+        const ownerPhone = form.ownerPhone.value;
+        const residential = form.residential.value;
+        const location = form.location.value;
+        const area = form.area.value;
+        
 
-        const newHouseInfo = { title, bedrooms, bathrooms, description, picture, price, availability, phone, houseOwner, ownerEmail }
+        const newHouseInfo = { ownerPhone, residential, location, area, title, bedrooms, bathrooms, description, picture, price, availability, houseOwner, ownerEmail }
 
         fetch('http://localhost:5000/houses', {
             method: 'POST',
@@ -71,6 +75,7 @@ const AddNewHouse = () => {
                                                 autoComplete="title"
                                                 className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 rounded-r-md ring-inset focus:ring-2 focus:ring-inset focus:ring-[var(--primary-color)] sm:text-md sm:leading-6 outline-none"
                                                 placeholder="2 Bed Rooms"
+                                                required
                                             />
                                         </div>
                                     </div>
@@ -85,6 +90,7 @@ const AddNewHouse = () => {
                                             name="bedrooms"
                                             autoComplete="bedrooms"
                                             className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-[var(--primary-color)] sm:max-w-xs sm:text-md sm:leading-6 outline-none"
+                                            required
                                         >
                                             <option>1</option>
                                             <option>2</option>
@@ -95,7 +101,7 @@ const AddNewHouse = () => {
                                     </div>
                                 </div>
                                 
-                                <div className="sm:col-span-3">
+                                <div className="sm:col-span-2">
                                     <label htmlFor="bathrooms" className="block text-md font-medium leading-6 text-gray-900">
                                         Bathrooms
                                     </label>
@@ -105,6 +111,7 @@ const AddNewHouse = () => {
                                             name="bathrooms"
                                             autoComplete="bathrooms"
                                             className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-[var(--primary-color)] sm:max-w-xs sm:text-md sm:leading-6 outline-none"
+                                            required
                                         >
                                             <option>1</option>
                                             <option>2</option>
@@ -112,6 +119,43 @@ const AddNewHouse = () => {
                                             <option>4</option>
                                             <option>5+</option>
                                         </select>
+                                    </div>
+                                </div>
+
+                                <div className="sm:col-span-2">
+                                    <label htmlFor="residential" className="block text-md font-medium leading-6 text-gray-900">
+                                        Residential
+                                    </label>
+                                    <div className="mt-2">
+                                        <select
+                                            id="residential"
+                                            name="residential"
+                                            autoComplete="residential"
+                                            className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-[var(--primary-color)] sm:max-w-xs sm:text-md sm:leading-6 outline-none"
+                                            required
+                                        >
+                                            <option>Room</option>
+                                            <option>Apartment</option>
+                                            <option>Penthouse</option>
+                                            <option>Duplex</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div className="sm:col-span-2">
+                                    <label htmlFor="area" className="block text-md font-medium leading-6 text-gray-900">
+                                        Area
+                                    </label>
+                                    <div className="mt-2">
+                                        <input
+                                            type="number"
+                                            name="area"
+                                            id="area"
+                                            autoComplete="area"
+                                            className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-[var(--primary-color)] placeholder:text-gray-400  sm:text-md sm:leading-6 outline-none"
+                                            placeholder='Area (sqft)'
+                                            required
+                                        />
                                     </div>
                                 </div>
 
@@ -127,6 +171,7 @@ const AddNewHouse = () => {
                                             className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-[var(--primary-color)] placeholder:text-gray-400 outline-0 sm:text-md sm:leading-6"
                                             defaultValue={''}
                                             placeholder='Description'
+                                            required
                                         />
                                     </div>
                                     <p className="mt-3 text-md leading-6 text-gray-600">Write a few sentences description.</p>
@@ -140,7 +185,7 @@ const AddNewHouse = () => {
                                         <div className="text-center w-full md:w-10/12">
                                             <FaPhotoVideo className="mx-auto h-12 w-12 text-gray-300" aria-hidden="true" />
                                             <div className="mt-4 flex text-md leading-6 text-gray-600">
-                                                <input id="toy-photo" name="picture" type="text" className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-[var(--primary-color)] placeholder:text-gray-400 outline-0 sm:text-md sm:leading-6" placeholder='PhotoURL' />
+                                                <input id="toy-photo" name="picture" type="text" className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-[var(--primary-color)] placeholder:text-gray-400 outline-0 sm:text-md sm:leading-6" placeholder='PhotoURL' required />
                                             </div>
                                             <p className="text-xs leading-5 text-gray-600">Choose only http or https house photo link</p>
                                         </div>
@@ -157,38 +202,42 @@ const AddNewHouse = () => {
                                             id="price"
                                             autoComplete="price"
                                             className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-[var(--primary-color)] placeholder:text-gray-400 sm:text-md sm:leading-6 outline-none"
-                                            placeholder='Price'
+                                            placeholder='Price (only thousand)'
+                                            required
                                         />
                                     </div>
                                 </div>
 
                                 <div className="sm:col-span-2">
                                     <label htmlFor="availability" className="block text-md font-medium leading-6 text-gray-900">
-                                        availability
+                                        Availability
                                     </label>
                                     <div className="mt-2">
                                         <input
-                                            type="availability"
+                                            type="date"
                                             name="availability"
                                             id="availability"
                                             autoComplete="availability"
                                             className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-[var(--primary-color)] placeholder:text-gray-400  sm:text-md sm:leading-6 outline-none"
                                             placeholder='Availability'
+                                            required
                                         />
                                     </div>
                                 </div>
+
                                 <div className="sm:col-span-2">
-                                    <label htmlFor="phone" className="block text-md font-medium leading-6 text-gray-900">
-                                        Phone
+                                    <label htmlFor="location" className="block text-md font-medium leading-6 text-gray-900">
+                                        Location
                                     </label>
                                     <div className="mt-2">
                                         <input
-                                            type="phone"
-                                            name="phone"
-                                            id="phone"
-                                            autoComplete="phone"
+                                            type="text"
+                                            name="location"
+                                            id="location"
+                                            autoComplete="location"
                                             className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-[var(--primary-color)] placeholder:text-gray-400  sm:text-md sm:leading-6 outline-none"
-                                            placeholder='Phone'
+                                            placeholder='location'
+                                            required
                                         />
                                     </div>
                                 </div>
@@ -200,7 +249,7 @@ const AddNewHouse = () => {
                             <p className="mt-1 text-md leading-6 text-gray-600">Please provide valid information for submit a house</p>
 
                             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                                <div className="sm:col-span-3">
+                                <div className="sm:col-span-2">
                                     <label htmlFor="houseOwner" className="block text-md font-medium leading-6 text-gray-900">
                                         Owner name
                                     </label>
@@ -213,13 +262,14 @@ const AddNewHouse = () => {
                                             className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-[var(--primary-color)] placeholder:text-gray-400  sm:text-md sm:leading-6 outline-none"
                                             placeholder='Owner name'
                                             defaultValue={user?.fullname}
+                                            disabled
                                         />
                                     </div>
                                 </div>
 
-                                <div className="sm:col-span-3">
+                                <div className="sm:col-span-2">
                                     <label htmlFor="ownerEmail" className="block text-md font-medium leading-6 text-gray-900">
-                                        Seller email
+                                    Owner email
                                     </label>
                                     <div className="mt-2">
                                         <input
@@ -230,6 +280,25 @@ const AddNewHouse = () => {
                                             className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-[var(--primary-color)] placeholder:text-gray-400  sm:text-md sm:leading-6 outline-none"
                                             placeholder='Owner email'
                                             defaultValue={user?.email}
+                                            disabled
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="sm:col-span-2">
+                                    <label htmlFor="ownerPhone" className="block text-md font-medium leading-6 text-gray-900">
+                                        Owner email
+                                    </label>
+                                    <div className="mt-2">
+                                        <input
+                                            type="number"
+                                            name="ownerPhone"
+                                            id="ownerPhone"
+                                            autoComplete="ownerPhone"
+                                            className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-[var(--primary-color)] placeholder:text-gray-400  sm:text-md sm:leading-6 outline-none"
+                                            placeholder='Owner phone'
+                                            defaultValue={user?.phone}
+                                            disabled
                                         />
                                     </div>
                                 </div>
