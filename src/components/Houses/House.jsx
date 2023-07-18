@@ -3,16 +3,11 @@ import { LiaBathSolid } from 'react-icons/lia'
 import { IoLocationOutline } from 'react-icons/io5'
 import { BsFillBookmarkPlusFill } from 'react-icons/bs'
 const House = ({ house }) => {
-    console.log(house);
-    const desc = house.description;
-    const words = desc.split(' ');
-    const shortDescription = words.slice(0, 12).join(' ') + '...';
     return (
         <div className="card card-compact w-96 bg-base-100 border shadow-md">
             <figure><img src={house?.picture} className='h-[210px] object-cover w-full' alt="Shoes" /></figure>
             <div className="card-body">
                 <h2 className="card-title capitalize">{house?.title}</h2>
-                <p>{shortDescription}</p>
                 <div className='w-full flex items-center justify-between'>
                     <p className='text-[18px]'>
                         <mark className='p-[2px] px-2 rounded-xl bg-[var(--opacity-color)]'>
