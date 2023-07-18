@@ -7,6 +7,7 @@ import SearchHouse from '../SearchHouse/SearchHouse';
 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { TypeAnimation } from 'react-type-animation';
 
 const Header = () => {
 
@@ -55,6 +56,31 @@ const Header = () => {
                 <div className="hero-overlay bg-opacity-60"></div>
                 <div className="hero-content text-center text-neutral-content">
                     <form onSubmit={handleSearchHouse} className="max-w-[800px] min-h-[400px] flex flex-col items-center justify-center">
+                        <h1 className='text-[30px] text-white font-medium mb-1'>Search with multiple option, as your need!</h1>
+                        <p className=" text-2xl flex flex-col md:flex-row">
+                            <span className="bg-[var(--primary-color)] px-3 py-0 text-[20px] rounded-full font-medium shadow-md mb-5">
+                                <TypeAnimation
+                                    sequence={[
+                                        'Choose your affordable price.', // Types 'One'
+                                        1000, // Waits 1s
+                                        'Need your room, apartment etc.', // Deletes 'One' and types 'Two'
+                                        1000, // Waits 2s
+                                        'Go your comfortable location.', // Types 'Three' without deleting 'Two'
+                                        1000,
+                                        'Enjoy you bedroom with partner.', // Types 'Three' without deleting 'Two'
+                                        1000,
+                                        'Choice your healthy bathrooms.', // Types 'Three' without deleting 'Two'
+                                        1000,
+                                        'See your own room or home size.', // Types 'Three' without deleting 'Two'
+                                        1000,
+                                    ]}
+                                    wrapper="span"
+                                    cursor={true}
+                                    repeat={Infinity}
+                                    style={{ fontSize: '1em', display: 'inline-block' }}
+                                />
+                            </span>
+                        </p>
                         <div className='w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 justify-between'>
                             <div className='bg-white flex items-center rounded-lg'>
                                 <input type="number" name='price' placeholder="Price (BDT)" className="p-3 rounded-lg border-none border-0 outline-0 w-full max-w-xs text-[var(--primary-color)] text-[15px] font-medium" />
