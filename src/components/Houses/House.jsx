@@ -4,7 +4,7 @@ import { IoLocationOutline } from 'react-icons/io5'
 import { BsFillBookmarkPlusFill } from 'react-icons/bs'
 const House = ({ house }) => {
     return (
-        <div className="card card-compact w-96 bg-base-100 border shadow-md">
+        <div className="card card-compact bg-base-100 border shadow-md">
             <figure><img src={house?.picture} className='h-[210px] object-cover w-full' alt="Shoes" /></figure>
             <div className="card-body">
                 <h2 className="card-title capitalize">{house?.title}</h2>

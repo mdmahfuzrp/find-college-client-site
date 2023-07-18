@@ -83,11 +83,11 @@ const Header = () => {
                         </p>
                         <div className='w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 justify-between'>
                             <div className='bg-white flex items-center rounded-lg'>
-                                <input type="number" name='price' placeholder="Price (BDT)" className="p-3 rounded-lg border-none border-0 outline-0 w-full max-w-xs text-[var(--primary-color)] text-[15px] font-medium" />
+                                <input type="number" name='price' placeholder="Price (BDT)" className="p-3 rounded-lg border-none border-0 outline-0 w-full text-[var(--primary-color)] text-[15px] font-medium" />
                             </div>
 
                             <div>
-                                <select name='residential' className="select select-bordered w-full max-w-xs text-[var(--primary-color)] text-[15px] font-medium">
+                                <select name='residential' className="select select-bordered w-full text-[var(--primary-color)] text-[15px] font-medium">
                                     <option disabled selected>Residential</option>
                                     <option>Room</option>
                                     <option>Apartment</option>
@@ -103,7 +103,7 @@ const Header = () => {
                         </div>
                         <div className='w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 justify-between pt-[8px]'>
                             <div>
-                                <select name='bedrooms' className="select select-bordered w-full max-w-xs text-[var(--primary-color)] text-[15px] font-medium">
+                                <select name='bedrooms' className="select select-bordered w-full text-[var(--primary-color)] text-[15px] font-medium">
                                     <option disabled selected>Bedrooms</option>
                                     <option>1</option>
                                     <option>2</option>
@@ -113,7 +113,7 @@ const Header = () => {
                                 </select>
                             </div>
                             <div>
-                                <select name='bathrooms' className="select select-bordered w-full max-w-xs text-[var(--primary-color)] text-[15px] font-medium">
+                                <select name='bathrooms' className="select select-bordered w-full text-[var(--primary-color)] text-[15px] font-medium">
                                     <option disabled selected>Bathrooms</option>
                                     <option>1</option>
                                     <option>2</option>
@@ -128,7 +128,7 @@ const Header = () => {
                                 <span className='pr-2 text-[var(--primary-color)]'><TbChartAreaLine size={20} /></span>
                             </div>
 
-                            <button type='submit' className='bg-[var(--primary-color)] flex items-center justify-center text-[18px] rounded-lg text-white'>
+                            <button type='submit' className='py-[10px] mt-4 md:mt-0 md:py-0 bg-[var(--primary-color)] flex items-center justify-center text-[18px] rounded-lg text-white'>
                                 Find House
                             </button>
                         </div>

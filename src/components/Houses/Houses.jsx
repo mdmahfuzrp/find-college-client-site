@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import House from './House'
+import { MagnifyingGlass } from 'react-loader-spinner';
 const Houses = () => {
     const [houses, setHouses] = useState([]);
     const [totalHouse, setTotalHouse] = useState(0);
@@ -9,10 +10,10 @@ const Houses = () => {
     const totalPages = Math.ceil(totalHouse / itemsPerPage);
     const pageNumbers = [...Array(totalPages).keys()];
 
-    useEffect(()=>{
+    useEffect(() => {
         fetch('http://localhost:5000/totalHouses')
-        .then(res => res.json())
-        .then(data => setTotalHouse(data.totalHouses))
+            .then(res => res.json())
+            .then(data => setTotalHouse(data.totalHouses))
     })
 
     useEffect(() => {
@@ -32,15 +33,31 @@ const Houses = () => {
                 <img className='w-[200px]' src="https://i.ibb.co/cCPf9f7/houses.png" alt="" />
             </div>
 
-            <div className='grid mt-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
-                {
-                    houses.map((house, index) => <House
-                        key={house._id}
-                        house={house}
-                        digit={index + 1}
-                    ></House>)
-                }
-            </div>
+            {
+                houses.length > 0 ? <>
+                    <div className='grid mt-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-2 xl:gap-5'>
+                        {
+                            houses.map((house, index) => <House
+                                key={house._id}
+                                house={house}
+                                digit={index + 1}
+                            ></House>)
+                        }
+                    </div>
+                </> : <div className='w-fit mx-auto flex flex-col items-center justify-center mt-12'>
+                    <MagnifyingGlass
+                        visible={true}
+                        height="80"
+                        width="80"
+                        ariaLabel="MagnifyingGlass-loading"
+                        wrapperStyle={{}}
+                        wrapperClass="MagnifyingGlass-wrapper"
+                        glassColor='#8961b33e'
+                        color='#8861b3'
+                    />
+                    <p className='text-gray-400'>Wait for loading please..</p>
+                </div>
+            }
 
             <div className='w-full bg-white'>
                 {/* Pagination */}

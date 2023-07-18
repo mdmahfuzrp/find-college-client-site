@@ -4,9 +4,9 @@ import logo from '../../assets/logo.png'
 import { useContext } from 'react';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 const NavBar = () => {
-    const {logout, user} = useContext(AuthContext);
+    const { logout, user } = useContext(AuthContext);
 
-    const handleLogout = () =>{
+    const handleLogout = () => {
         logout();
     }
 
@@ -22,7 +22,7 @@ const NavBar = () => {
 
     return (
         <div className=''>
-            <div className="navbar mx-auto">
+            <div className="navbar mx-auto p-0">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -33,7 +33,7 @@ const NavBar = () => {
                         </ul>
                     </div>
                     <div className='flex items-center'>
-                        <Link to='/' className='hidden sm:inline text-2xl uppercase font-semibold text-gray-700'><img className='w-[180px]' src={logo} alt="" /></Link>
+                        <Link to='/' className=' text-2xl uppercase font-semibold text-gray-700'><img className='w-[180px]' src={logo} alt="" /></Link>
                     </div>
                 </div>
                 <div className="navbar-center hidden lg:flex">
@@ -46,12 +46,13 @@ const NavBar = () => {
                         {
                             user ? <>
 
-                                <div id='parent-user-profile' className='flex items-center gap-x-3'>
-                                    <label id='user-pic' tabIndex={0} className="relative btn btn-ghost btn-circle avatar flex-row-reverse">
+                                <div id='parent-user-profile' className='flex items-center gap-x-1'>
+
+                                    <Link to='/dashboard' className='badge bg-[var(--primary-color)] text-white -mb-1 cursor-pointer w-full font-normal p-4 text-[17px]'>{user?.fullname}</Link>
+                                    <label id='user-pic' tabIndex={0} className=" btn btn-ghost btn-circle avatar flex-row-reverse">
                                         <div className="w-12 rounded-full">
                                             <img src='https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-538.jpg' />
                                         </div>
-                                        <p id='user-name' className='absolute right-14 top-5 opacity-0 text-lg btn bg-white border-0 shadow-md btn-sm font-medium text-error overflow-hidden'>{user?.email}</p>
                                     </label>
                                 </div>
                                 <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
