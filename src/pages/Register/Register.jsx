@@ -23,8 +23,11 @@ const Register = () => {
             });
 
             // Handle successful registration (e.g., display a success message or redirect to login page)
-            setSuccess(response.data.message);
-            Swal
+            
+            if(response.data.message){
+                e.target.reset();
+                setSuccess(response.data.message);
+            }
         } catch (error) {
             // Handle registration error (e.g., display an error message)
             console.error('Error registering user:', error.response.data.message);
