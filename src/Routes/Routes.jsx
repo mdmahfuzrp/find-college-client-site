@@ -9,6 +9,7 @@ import DashboardHome from "../pages/DashboardHome/DashboardHome";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import AddNewHouse from "../pages/AddNewHouse/AddNewHouse";
 import EditHouse from "../pages/EditHouse/EditHouse";
+import HouseDetails from "../components/HouseDetails/HouseDetails";
 
 const router = createBrowserRouter([
     {
@@ -44,7 +45,12 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/editHouse/:id',
                 element: <EditHouse></EditHouse>,
-                loader: ({params}) => fetch(`http://localhost:5000/houses/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/houses/${params.id}`)
+            },
+            {
+                path: '/dashboard/houseDetails/:id',
+                element: <HouseDetails></HouseDetails>,
+                loader: ({ params }) => fetch(`http://localhost:5000/allBookings/${params.id}`)
             }
         ]
     },
