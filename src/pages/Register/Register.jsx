@@ -4,11 +4,16 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useState } from 'react';
 import Swal from 'sweetalert2';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+
+const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&_-]{8,}$/;
+
 const Register = () => {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
     const navigate = useNavigate();
     const { register, handleSubmit, formState: { errors }, } = useForm();
+    const [showPass, setShowPass] = useState(false);
 
     const handleRegistration = async (data, e) => {
         e.preventDefault();
@@ -25,6 +30,13 @@ const Register = () => {
         }
         if (!/^\d+$/.test(data.phone)) {
             setError('Only digit allowed!')
+            return;
+        }
+
+        if (!strongPasswordRegex.test(data.password)) {
+            setError(
+                'Password should be 8 characters long and include at least one digit, one uppercase, one lowercase, one special character!'
+            );
             return;
         }
 
@@ -92,11 +104,15 @@ const Register = () => {
                             {errors.phone && <p className='text-red-400 text-[15px]'>Enter Your Phone!</p>}
 
                         </div>
-                        <div className="mt-2">
-                            <input {...register('password', { required: true })} type="password" placeholder="Password" className="input input-bordered w-full focus:outline-none" />
+                        <div className="mt-2 relative">
+                            <input {...register('password', { required: true })} type={showPass ? 'text' : 'password'} placeholder='Password' className="input input-bordered w-full focus:outline-none" />
+                            {
+                                showPass ? <div onClick={() => setShowPass(!showPass)} className="absolute cursor-pointer text-[var(--primary-color)] top-[15px] right-2"><FaEye size={18} /></div>
+                                    : <div onClick={() => setShowPass(!showPass)} className="absolute cursor-pointer text-gray-400 top-[15px] right-2"><FaEyeSlash size={18} /></div>
+                            }
                             {errors.password && <p className='text-red-400 text-[15px]'>Enter Your Password!</p>}
                             {
-                                error && <p className='text-red-400 text-[15px]'>{error}</p>
+                                error && <p className='text-red-400 text-justify text-[15px] w-[400px]'>{error}</p>
                             }
                             {
                                 success && <p className='text-green-500 text-[15px] py-3'>Registration Complete You can <Link to='/login' className=' text-blue-500 underline font-medium'>Login Here</Link></p>

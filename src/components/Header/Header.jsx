@@ -3,11 +3,10 @@ import { useEffect, useState } from 'react';
 import './Header.css'
 import { IoLocationOutline } from 'react-icons/io5'
 import { TbChartAreaLine } from 'react-icons/tb'
-import SearchHouse from '../SearchHouse/SearchHouse';
-
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { TypeAnimation } from 'react-type-animation';
+import House from '../Houses/House';
 
 const Header = () => {
 
@@ -142,10 +141,10 @@ const Header = () => {
                         <h1 className='mb-3 text-[30px] font-semibold text-[var(--primary-color)] text-center border-b-[3px] w-fit mx-auto'>Your Current Search: </h1>
                         <div className='grid mt-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
                             {
-                                searchHouse.map((house) => <SearchHouse
+                                searchHouse.map((house) => <House
                                     key={house._id}
                                     house={house}
-                                ></SearchHouse>)
+                                ></House>)
                             }
                         </div>
                     </div>

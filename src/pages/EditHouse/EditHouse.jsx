@@ -64,9 +64,9 @@ const EditHouse = () => {
                 <form onSubmit={handleEditHouse}>
                     <div className="space-y-12">
                         <div className="border-b border-gray-900/10 pb-12">
-                            <h2 className=" text-2xl font-medium leading-7 text-gray-900">Add a <span className='text-[var(--primary-color)]'>House</span></h2>
+                            <h2 className=" text-2xl font-medium leading-7 text-gray-900">Update a <span className='text-[var(--primary-color)]'>House</span></h2>
                             <p className="mt-1 text-md leading-6 text-gray-600">
-                                Fill up the all information and post a house as a owner
+                                You can update all of the information of this houses
                             </p>
 
                             <div className="mt-5 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
