@@ -31,7 +31,7 @@ const MyHouse = ({ myHouse, digit, handleDeleteHouse }) => {
             <td className='text-lg'><span className='text-error'>{availability}</span></td>
             <th>
 
-                <Link to={`/myHouses/${_id}`} className="btn btn-sm px-2 shadow-md btn-success mr-1.5 text-white font-normal capitalize text-[18px]">Edit</Link>
+                <Link to={`/dashboard/editHouse/${_id}`} className="btn btn-sm px-2 shadow-md btn-success mr-1.5 text-white font-normal capitalize text-[18px]">Edit</Link>
                 <Link onClick={() => handleDeleteHouse(_id)} className="btn btn-sm px-2 shadow-md btn-error text-white font-normal capitalize text-[18px]">Delete</Link>
             </th>
 

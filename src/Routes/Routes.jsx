@@ -8,6 +8,7 @@ import Dashboard from "../layout/Dashboard/Dashboard";
 import DashboardHome from "../pages/DashboardHome/DashboardHome";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import AddNewHouse from "../pages/AddNewHouse/AddNewHouse";
+import EditHouse from "../pages/EditHouse/EditHouse";
 
 const router = createBrowserRouter([
     {
@@ -39,6 +40,11 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/addNewHouse',
                 element: <AddNewHouse></AddNewHouse>
+            },
+            {
+                path: '/dashboard/editHouse/:id',
+                element: <EditHouse></EditHouse>,
+                loader: ({params}) => fetch(`http://localhost:5000/houses/${params.id}`)
             }
         ]
     },
