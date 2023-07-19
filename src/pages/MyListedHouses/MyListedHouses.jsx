@@ -6,7 +6,7 @@ import { useQuery } from "react-query";
 import MyHouse from "./MyHouse";
 import MyBookedHouse from "../MyBookedHouse/MyBookedHouse";
 
-const DashboardHome = () => {
+const MyListedHouses = () => {
     const { user } = useContext(AuthContext);
     const { data: houses = [], refetch, isLoading } = useQuery(['houses'], async () => {
         const res = await fetch(`http://localhost:5000/houses/email?email=${user?.email}`);
@@ -82,43 +82,47 @@ const DashboardHome = () => {
                                 !isLoading ? <>
 
                                     <div className="overflow-x-auto mx-auto">
-                                        <table className="table table-zebra w-full border rounded-none">
-                                            {/* head */}
-                                            <thead>
-                                                <tr>
-                                                    <th className='rounded-none'></th>
-                                                    <th className='text-[16px] font-semibold'>Name & Location</th>
-                                                    <th className='text-[16px] font-semibold'>Owner Information</th>
-                                                    <th className='text-[16px] font-semibold'>Price</th>
-                                                    <th className='text-[16px] font-semibold'>availability</th>
-                                                    <th className='rounded-none'></th>
-                                                </tr>
-                                            </thead>
+                                        {
+                                            houses.length > 0 ? <>
+                                                <table className="table table-zebra w-full border rounded-none">
+                                                    {/* head */}
+                                                    <thead>
+                                                        <tr>
+                                                            <th className='rounded-none'></th>
+                                                            <th className='text-[16px] font-semibold'>Name & Location</th>
+                                                            <th className='text-[16px] font-semibold'>Owner Information</th>
+                                                            <th className='text-[16px] font-semibold'>Price</th>
+                                                            <th className='text-[16px] font-semibold'>availability</th>
+                                                            <th className='rounded-none'></th>
+                                                        </tr>
+                                                    </thead>
 
-                                            {/* All Toy Here with another component but same page */}
-                                            <tbody>
-                                                {
-                                                    houses.map((myHouse, index) => <MyHouse
-                                                        key={myHouse._id}
-                                                        myHouse={myHouse}
-                                                        digit={index + 1}
-                                                        handleDeleteHouse={handleDeleteHouse}
-                                                    ></MyHouse>)
-                                                }
-                                            </tbody>
+                                                    {/* All Toy Here with another component but same page */}
+                                                    <tbody>
+                                                        {
+                                                            houses.map((myHouse, index) => <MyHouse
+                                                                key={myHouse._id}
+                                                                myHouse={myHouse}
+                                                                digit={index + 1}
+                                                                handleDeleteHouse={handleDeleteHouse}
+                                                            ></MyHouse>)
+                                                        }
+                                                    </tbody>
 
-                                            {/* foot */}
-                                            <tfoot>
-                                                <tr>
-                                                    <th className='rounded-none'></th>
-                                                    <th className='text-[16px] font-semibold'>Name & Location</th>
-                                                    <th className='text-[16px] font-semibold'>Owner Information</th>
-                                                    <th className='text-[16px] font-semibold'>Price</th>
-                                                    <th className='text-[16px] font-semibold'>availability</th>
-                                                    <th className='rounded-none'></th>
-                                                </tr>
-                                            </tfoot>
-                                        </table>
+                                                    {/* foot */}
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th className='rounded-none'></th>
+                                                            <th className='text-[16px] font-semibold'>Name & Location</th>
+                                                            <th className='text-[16px] font-semibold'>Owner Information</th>
+                                                            <th className='text-[16px] font-semibold'>Price</th>
+                                                            <th className='text-[16px] font-semibold'>availability</th>
+                                                            <th className='rounded-none'></th>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </> : <p className='text-gray-400'>You {"don't"} have any house</p>
+                                        }
                                     </div>
 
                                 </> : <ProgressBar
@@ -139,4 +143,4 @@ const DashboardHome = () => {
     );
 };
 
-export default DashboardHome;
+export default MyListedHouses;

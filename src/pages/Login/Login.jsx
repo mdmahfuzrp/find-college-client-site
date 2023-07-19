@@ -4,13 +4,14 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useContext } from 'react';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
+import Swal from 'sweetalert2';
 const Login = () => {
     const { setIsLoggedIn } = useContext(AuthContext)
     const { register, handleSubmit, formState: { errors }, } = useForm();
 
     const location = useLocation();
     const navigate = useNavigate();
-    const from = location.state?.from?.pathname || '/';
+    const from = location.state?.from?.pathname || '/dashboard';
 
     const handleLogin = async (data, e) => {
         e.preventDefault();
@@ -30,18 +31,38 @@ const Login = () => {
                         localStorage.setItem('user-data', JSON.stringify(userData));
                         setIsLoggedIn(true);
                         navigate(from, { replace: true });
+                        window.location.reload();
+                        Swal.fire({
+                            title: `Success`,
+                            text: 'Your login successful!',
+                            icon: 'success',
+                            confirmButtonText: 'Ok'
+                        })
                     })
             }
             else {
-                localStorage.removeItem('access-token', 'user-data');
-
+                localStorage.removeItem('access-token');
+                localStorage.removeItem('user-data');
+                Swal.fire({
+                    title: `Error`,
+                    text: 'Something went wrong, please try again!',
+                    icon: 'error',
+                    confirmButtonText: 'Ok'
+                })
             }
         } catch (error) {
             // Handle login error (e.g., display an error message)
-            console.error('Error during login:', error.response.data.message);
+            // console.error('Error during login:', error.response.data.message);
+            Swal.fire({
+                title: `Error`,
+                text: 'Something went wrong, please try again!',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            })
         }
     }
 
+    
 
     return (
         <div>

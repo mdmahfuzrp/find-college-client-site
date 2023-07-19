@@ -1,17 +1,32 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../assets/logo.png'
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useState } from 'react';
+import Swal from 'sweetalert2';
 const Register = () => {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
+    const navigate = useNavigate();
     const { register, handleSubmit, formState: { errors }, } = useForm();
 
     const handleRegistration = async (data, e) => {
         e.preventDefault();
         setSuccess('');
         setError('');
+
+        if (!data.phone.startsWith("01")) {
+            setError('Start with 01 (BD phone number only allowed)')
+            return;
+        }
+        if (data.phone.length !== 11) {
+            setError('Give 11 digit Bangladeshi mobile number')
+            return;
+        }
+        if (!/^\d+$/.test(data.phone)) {
+            setError('Only digit allowed!')
+            return;
+        }
 
         try {
             const response = await axios.post('http://localhost:5000/allUsers', {
@@ -23,15 +38,27 @@ const Register = () => {
             });
 
             // Handle successful registration (e.g., display a success message or redirect to login page)
-            
-            if(response.data.message){
+
+            if (response.data.message) {
                 e.target.reset();
-                setSuccess(response.data.message);
+                navigate('/login');
+                Swal.fire({
+                    title: `Registration complete`,
+                    text: 'Registration successful, you can login now!',
+                    icon: 'success',
+                    confirmButtonText: 'Ok'
+                })
             }
         } catch (error) {
             // Handle registration error (e.g., display an error message)
             console.error('Error registering user:', error.response.data.message);
             setError(error.response.data.message)
+            Swal.fire({
+                title: `Error`,
+                text: 'Something went wrong, please try again!',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            })
         }
     }
     return (
@@ -69,7 +96,7 @@ const Register = () => {
                             <input {...register('password', { required: true })} type="password" placeholder="Password" className="input input-bordered w-full focus:outline-none" />
                             {errors.password && <p className='text-red-400 text-[15px]'>Enter Your Password!</p>}
                             {
-                                error && <p className='text-red-400 text-[15px]'>Enter Your Password!</p>
+                                error && <p className='text-red-400 text-[15px]'>{error}</p>
                             }
                             {
                                 success && <p className='text-green-500 text-[15px] py-3'>Registration Complete You can <Link to='/login' className=' text-blue-500 underline font-medium'>Login Here</Link></p>

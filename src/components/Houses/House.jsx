@@ -93,7 +93,9 @@ const House = ({ house }) => {
                 <div className='flex items-center mt-1 text-[var(--primary-color)]'><IoLocationOutline size={17} /> <p className='text-[16px] text-gray-600 ml-1'>{house?.location}</p></div>
                 <div className='flex items-center justify-between'>
                     <p className='text-[18px] text-left'><mark className='rounded-xl p-[2px] px-2 bg-[var(--opacity-color)]'>TO: {house.availability ? house.availability : <span className='text-[12px]'>No date found</span>}</mark></p>
-                    <button onClick={() => handleAddBookings(house)} className='custom-btn mt-1'><BsFillBookmarkPlusFill /> Book House</button>
+                    <button onClick={() => handleAddBookings(house)} className={` mt-1 ${user.role === 'House Owner' ? 'flex items-center text-gray-400 text-[15px] bg-gray-200 py-2 px-3 rounded-md' : 'custom-btn'}`} 
+                    disabled={user.role === 'House Owner'}>
+                        <BsFillBookmarkPlusFill /> Book House</button>
                 </div>
             </div>
         </div>

@@ -16,7 +16,7 @@ const NavBar = () => {
         <Link>About</Link>
         <Link>Contact</Link>
         {
-            user ? <Link to='/dashboard'>Dashboard</Link> : ''
+            user ? <Link to='/dashboard' className='bg-[var(--primary-color)] rounded-xl text-white py-1 px-3'>Dashboard</Link> : ''
         }
     </>
 
@@ -37,7 +37,7 @@ const NavBar = () => {
                     </div>
                 </div>
                 <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal px-1 space-x-6 text-[17px] text-[var(--primary-color)]">
+                    <ul className="menu menu-horizontal items-center px-1 space-x-6 text-[17px] text-[var(--primary-color)]">
                         {listItems}
                     </ul>
                 </div>

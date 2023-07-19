@@ -5,11 +5,14 @@ import Error from "../pages/Error/Error";
 import Register from "../pages/Register/Register";
 import Login from "../pages/Login/Login";
 import Dashboard from "../layout/Dashboard/Dashboard";
-import DashboardHome from "../pages/DashboardHome/DashboardHome";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import AddNewHouse from "../pages/AddNewHouse/AddNewHouse";
 import EditHouse from "../pages/EditHouse/EditHouse";
 import HouseDetails from "../components/HouseDetails/HouseDetails";
+import OwnerBookedHouses from "../pages/OwnerBookedHouses/OwnerBookedHouses";
+import MyBookedHouse from "../pages/MyBookedHouse/MyBookedHouse";
+import MyListedHouses from "../pages/MyListedHouses/MyListedHouses";
+import Profile from "../pages/Profile/Profile";
 
 const router = createBrowserRouter([
     {
@@ -36,7 +39,11 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/dashboard',
-                element: <DashboardHome></DashboardHome>
+                element: <Profile></Profile>
+            },
+            {
+                path: '/dashboard/myListedHouses',
+                element: <MyListedHouses></MyListedHouses>
             },
             {
                 path: '/dashboard/addNewHouse',
@@ -51,6 +58,15 @@ const router = createBrowserRouter([
                 path: '/dashboard/houseDetails/:id',
                 element: <HouseDetails></HouseDetails>,
                 loader: ({ params }) => fetch(`http://localhost:5000/allBookings/${params.id}`)
+            },
+            {
+                path: '/dashboard/allBookedHouses',
+                element: <OwnerBookedHouses></OwnerBookedHouses>
+
+            },
+            {
+                path: '/dashboard/manageBookings',
+                element: <MyBookedHouse></MyBookedHouse>
             }
         ]
     },

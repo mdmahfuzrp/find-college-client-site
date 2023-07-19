@@ -1,10 +1,9 @@
 import { BiBed } from 'react-icons/bi'
 import { LiaBathSolid } from 'react-icons/lia'
 import { IoLocationOutline } from 'react-icons/io5'
-import { BsFillBookmarkPlusFill } from 'react-icons/bs'
 import { TbListDetails } from 'react-icons/tb'
 import { Link } from 'react-router-dom'
-const BookedHouse = ({ house, handleDeleteBooking }) => {
+const AllBookedHouses = ({ house }) => {
     return (
         <div className="card card-compact bg-base-100 border shadow-md">
             <figure><img src={house?.picture} className='h-[210px] object-cover w-full' alt="Shoes" /></figure>
@@ -23,14 +22,15 @@ const BookedHouse = ({ house, handleDeleteBooking }) => {
                     <p className='text-[18px] text-right'><mark className='rounded-xl p-[2px] px-2 bg-[var(--opacity-color)]'>{house?.residential}</mark></p>
                 </div>
                 <div className='flex items-center mt-1 text-[var(--primary-color)]'><IoLocationOutline size={17} /> <p className='text-[16px] text-gray-600 ml-1'>{house?.location}</p></div>
-                <div className='flex flex-col items-center justify-between'>
-                    <p className='text-[18px] text-left'><mark className='rounded-xl p-[2px] px-2 bg-[var(--opacity-color)]'>TO: {house.availability ? house.availability : <span className='text-[12px]'>No date found</span>}</mark></p>
-                    <button onClick={() => handleDeleteBooking(house?._id)} className='custom-btn mx-auto mt-3'><BsFillBookmarkPlusFill /> Delete Booking</button>
+                <div className='border-2 p-1 pb-3 rounded-lg'>
+                    <p className='text-[var(--primary-color)] text-center mb-3 border-b-2 text-[18px]'>Renter Information:</p>
+                    <p className='text-[18px] text-center mb-3'><mark className='rounded-xl p-[2px] px-2 bg-[var(--opacity-color)]'>{house.renterName}</mark></p>
+                    <p className='text-[18px] text-center '><mark className='rounded-xl p-[2px] px-2 bg-[var(--opacity-color)]'>{house.renterEmail}</mark></p>
                 </div>
-                <Link to={`/dashboard/houseDetails/${house?._id}`} className='custom-btn mt-1 mx-auto'><TbListDetails />See House Details</Link>
+                <Link to={`/dashboard/houseDetails/${house?._id}`} className='custom-btn mt-2 mx-auto'><TbListDetails />See House Details</Link>
             </div>
         </div>
     );
 };
 
-export default BookedHouse;
+export default AllBookedHouses;

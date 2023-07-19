@@ -10,20 +10,21 @@ const DashboardSideBar = () => {
     }
 
     const houseOwner = <>
-        <Link to='/' className='w-full text-[#ffffffdd] hover:bg-[#ffffff3f] py-[7px] px-3 rounded-md hover:shadow-md cursor-pointer'>Home</Link>
-        <Link to='/dashboard' className='w-full text-[#ffffffdd] hover:bg-[#ffffff3f] py-[7px] px-3 rounded-md hover:shadow-md cursor-pointer'>All Listed House</Link>
-        <Link className='w-full text-[#ffffffdd] hover:bg-[#ffffff3f] py-[7px] px-3 rounded-md hover:shadow-md cursor-pointer'>All Booked Houses</Link>
-        <Link to='/dashboard/addNewHouse' className='w-full text-[#ffffffdd] hover:bg-[#ffffff3f] py-[7px] px-3 rounded-md hover:shadow-md cursor-pointer'>Add New Houses</Link>
+        <Link to='/dashboard' className='w-full border mb-2 mt-3 text-[#ffffffdd] hover:bg-[#ffffff3f] py-[7px] px-3 rounded-md hover:shadow-md cursor-pointer'>My Profile</Link>
+        <Link to='/dashboard/myListedHouses' className='w-full border mb-2 text-[#ffffffdd] hover:bg-[#ffffff3f] py-[7px] px-3 rounded-md hover:shadow-md cursor-pointer'>My All Listed Houses</Link>
+        <Link to='/dashboard/allBookedHouses' className='w-full border mb-2 text-[#ffffffdd] hover:bg-[#ffffff3f] py-[7px] px-3 rounded-md hover:shadow-md cursor-pointer'>All Booked Houses</Link>
+        <Link to='/dashboard/addNewHouse' className='w-full border mb-2 text-[#ffffffdd] hover:bg-[#ffffff3f] py-[7px] px-3 rounded-md hover:shadow-md cursor-pointer'>Add New Houses</Link>
+        <Link to='/' className='w-full text-[#ffffffdd] border mb-2 bg-[#ffffff3f] py-[7px] px-3 rounded-md shadow-md cursor-pointer'>Go Back Home</Link>
     </>
 
     const houseRenter = <>
-        <Link to='/' className='w-full text-[#ffffffdd] hover:bg-[#ffffff3f] py-[7px] px-3 rounded-md hover:shadow-md cursor-pointer'>Home</Link>
-        <Link className='w-full text-[#ffffffdd] hover:bg-[#ffffff3f] py-[7px] px-3 rounded-md hover:shadow-md cursor-pointer'>My Booked Houses</Link>
-        <Link className='w-full text-[#ffffffdd] hover:bg-[#ffffff3f] py-[7px] px-3 rounded-md hover:shadow-md cursor-pointer'>Manage Bookings</Link>
+        <Link to='/dashboard' className='w-full text-[#ffffffdd] border mb-2 mt-3 hover:bg-[#ffffff3f] py-[7px] px-3 rounded-md hover:shadow-md cursor-pointer'>My Profile</Link>
+        <Link to='/dashboard/manageBookings' className='w-full border mb-2 text-[#ffffffdd] hover:bg-[#ffffff3f] py-[7px] px-3 rounded-md hover:shadow-md cursor-pointer'>Manage Bookings</Link>
+        <Link to='/' className='w-full text-[#ffffffdd] border mb-2 bg-[#ffffff3f] py-[7px] px-3 rounded-md shadow-md cursor-pointer'>Go Back Home</Link>
     </>
 
     return (
-        <div className="w-[220px] md:h-screen overflow-hidden relative bg-[var(--primary-color)] py-5 px-2">
+        <div className="w-[270px] md:h-screen overflow-hidden relative bg-[var(--primary-color)] py-5 px-2">
             <div className='flex items-center justify-between'>
                 <Link to='/'>
                     <img className='w-[130px]' src={logo} alt="" />
