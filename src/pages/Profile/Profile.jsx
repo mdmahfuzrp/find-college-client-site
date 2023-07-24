@@ -1,20 +1,53 @@
-import { useContext } from "react";
-import { AuthContext } from "../../AuthProvider/AuthProvider";
+import { useEffect, useState } from "react";
+import useAuthContext from "../../hooks/useAuthContext";
+import { FaEdit } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Profile = () => {
-    const { user } = useContext(AuthContext);
+
+    const { user } = useAuthContext()
+    const [submitCollege, setSubmitCollege] = useState([])
+
+    useEffect(() => {
+        fetch(`https://find-college-server.vercel.app/submit-college-form?email=${user?.email}`)
+            .then(res => res.json())
+            .then(data => setSubmitCollege(data))
+    }, [user?.email])
+
+
     return (
-        <div>
-            <div className="bg-[var(--bg-color)] flex flex-col min-h-screen -mt-14 items-center justify-center">
-                <h1 className="text-[30px] font-medium">Hello {user.fullname ? user.fullname : user.email}, Welcome to dashboard!</h1>
-                <img className="w-[150px] h-[150px] object-cover rounded-full" src={user?.photoURL ? user?.photoURL : 'https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-538.jpg'} alt="" />
-                <p className="uppercase -mt-3 mb-0 text-[18px] font-semibold text-[var(--primary-color)]">Your role: {user?.role}</p>
-                <p className="capitalize mt-3 mb-0 text-[16px] font-medium text-[var(--primary-color)]">{user?.fullname}</p>
-                <div>
-                    <p className="text-[16px] font-medium text-[var(--primary-color)]">{user?.email}</p>
-                </div>
+        <section className="max-w-screen-lg lg:mx-auto lg:my-32 mx-5">
+            <div className="flex justify-between items-center">
+                <h3 className="text-3xl mt-8 lg:mt-0">Profile Information</h3>
+
             </div>
-        </div>
+            <hr />
+
+            {
+                submitCollege && submitCollege.map((profile, idx) => <div
+                    key={idx}
+                    className="lg:mx-12 grid lg:grid-cols-2 lg:gap-x-24 lg:mt-12 font-bold uppercase"
+                >
+                    <h3 className="my-5">First Name: <span className="font-normal ml-5">{profile.firstName}</span></h3>
+                    <h3 className="my-5">Last Name: <span className="font-normal ml-5">{profile.lastName}</span></h3>
+                    <h3 className="my-5">Email: <span className="font-normal ml-5">{profile.email}</span></h3>
+                    <h3 className="my-5">University: <span className="font-normal ml-5">{profile.university}</span></h3>
+                    <h3 className="my-5">Department: <span className="font-normal ml-5">{profile.department}</span></h3>
+                    <h3 className="my-5">Country: <span className="font-normal ml-5">{profile.country}</span></h3>
+                    <h3 className="my-5">Address: <span className="font-normal ml-5">{profile.address}</span></h3>
+                    <h3 className="my-5">Phone: <span className="font-normal ml-5">{profile.phone}</span></h3>
+
+                    <Link
+                        to="/profile/edit"
+                        state={profile}
+                        className="flex items-center gap-2 text-center mt-12 ml-auto col-span-2">
+                        <button >Edit</button>
+                        <FaEdit></FaEdit>
+                    </Link>
+                </div>)
+            }
+
+        </section>
     );
 };
 

@@ -1,0 +1,36 @@
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #202020;
+    color: #fff;
+    padding: 100px 0;
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.swiper-button-prev {
+    color: #fff;
+    padding-left: 50px;
+}
+
+.swiper-button-next {
+    color: #fff;
+    padding-right: 50px;
+}
+
+@media screen and (max-width: 640px) {
+    .swiper-button-prev {
+        padding-left: 5px;
+    }
+
+    .swiper-button-next {
+        padding-right: 5px;
+    }
+}
